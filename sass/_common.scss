@@ -1,0 +1,167 @@
+@mixin no-user-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+@mixin transitionTransform($transition-time, $method) {
+    -webkit-transition: -webkit-transform $transition-time $method;
+    -moz-transition: -moz-transform $transition-time $method;
+    -ms-transition: -ms-transform $transition-time $method;
+    -o-transition: -o-transform $transition-time $method;
+    transition: transform $transition-time $method;
+}
+
+// generic transform
+@mixin transform($transforms) {
+       -moz-transform: $transforms;
+         -o-transform: $transforms;
+        -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+ 
+// scale
+@mixin scale($scale) {
+     @include transform(scale($scale));
+} 
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate3d($x, $y, 0));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+         -o-transform-origin: $origin;
+        -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+
+@mixin nav-controls-factored($factor) {
+    width: $iconWidth * $factor;
+    height: $iconWidth * $factor;
+    line-height: $iconWidth * $factor;
+    &[class*="el-icon-"] {
+        font-size: 25px * $factor;
+    }
+    &.fa {
+        font-size: 40px * $factor;
+    }
+}
+
+.nav-controls {
+    box-sizing: border-box;
+    width: 100%;
+    font-family: UbuntuBold;
+    .t-cell {
+        vertical-align: middle;
+    }
+
+    a.control-icon, span.control-icon {
+        text-decoration: none;
+        display: inline-block;
+    }
+    .control-icon {
+        @include nav-controls-factored(1);
+        text-align: center;
+        background-color: $color-primary;
+        color: white;
+        cursor: pointer;
+        @include no-user-select;
+        outline: 0;
+
+        &.disabled {
+            background-color: #999;
+            color: white;
+        }
+
+        &.ng-click-active:not(.disabled) {
+            background-color: $color-hover;
+        }
+
+        &:focus {
+            outline: 0;
+            @include no-user-select;
+        }
+    }
+}
+
+@mixin panel-modal-body($factor) {
+    padding: 60px*$factor 20px*$factor 0 20px*$factor;
+    .modal-title {
+        font-size: 30px * $factor;
+        &+.modal-title {
+            margin-top: 10px * $factor;
+        }
+    }
+}
+
+.panel-modal-container {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    &.z200 {
+        z-index: 200;
+    }
+    .panel-modal-body {
+        @include panel-modal-body(1);
+        color: white;
+        box-sizing: border-box;
+        .modal-title {
+            text-align: center;
+            width: 100%;
+        }
+    }
+}
+
+i.el-icon-star {
+    color: #999;
+    &.rewarded {
+        color: #f3d231;
+    }
+}
+
+@media only screen and (min-width:500px) {
+    .panel-modal-container .panel-modal-body {
+        @include panel-modal-body(1.5);
+    }
+    .nav-controls .control-icon {
+        @include nav-controls-factored(1.5);
+    }
+}
+
+@media only screen and (max-height:480px) {
+    .panel-modal-container .panel-modal-body {
+        @include panel-modal-body(0.9);
+    }
+    .nav-controls .control-icon {
+        @include nav-controls-factored(0.9);
+    }
+}

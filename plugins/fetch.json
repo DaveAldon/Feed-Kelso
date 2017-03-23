@@ -1,0 +1,31 @@
+{
+    "com.cmackay.plugins.googleanalytics": {
+        "source": {
+            "type": "registry",
+            "id": "com.cmackay.plugins.googleanalytics"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.apache.cordova.device": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device"
+        }
+    },
+    "com.brodysoft.sqlitePlugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/brodysoft/Cordova-SQLitePlugin",
+            "subdir": "."
+        }
+    },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
