@@ -4,7 +4,28 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-		<title>Learn Game Development at ZENVA.com</title>
+		<title>Feed Kelso</title>
+
+		<!--Components installed for Firebase-->
+		<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+		<!--This one is for the live database-->
+		<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-database.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyCKavR_qg_8Un8qKph16SR5N3PXR5m6Psk",
+		    authDomain: "feed-kelso.firebaseapp.com",
+		    databaseURL: "https://feed-kelso.firebaseio.com",
+		    projectId: "feed-kelso",
+		    storageBucket: "feed-kelso.appspot.com",
+		    messagingSenderId: "879077848125"
+		  };
+		  firebase.initializeApp(config);
+
+		// Get a reference to the database service
+  		
+		</script>
+
         <script src="cordova.js"></script>
         <script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
 		<script src="js/phaser.js"></script>		
@@ -18,6 +39,16 @@
 	</head>
 
 	<body>   
+	<input id="clickMe" type="button" value="clickme" onclick="writeUserData();" />
+		<script>
+			var database = firebase.database();
+			function writeUserData("john", "john") {
+				firebase.database().ref('users/' + userId).set({
+					username: name
+				});
+			}
+
+		</script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

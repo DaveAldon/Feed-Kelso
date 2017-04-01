@@ -1,3 +1,5 @@
+var database = firebase.database();
+
 //this game will have only 1 state
 var GameState = {
   //load the game assets before the game starts
@@ -13,6 +15,7 @@ var GameState = {
   //executed after everything is loaded
   create: function() {
       
+    writeUserData(1, "John"); 
     //scaling options
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     
@@ -205,6 +208,12 @@ var GameState = {
     this.game.state.restart();
   },
 };
+
+function writeUserData(userId, name) {
+  firebase.database().ref('users/' + userId).set({
+    username: name
+  });
+}
 
 //initiate the Phaser framework
 var game = new Phaser.Game(360, 640, Phaser.AUTO);
