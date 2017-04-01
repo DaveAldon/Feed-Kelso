@@ -1,4 +1,24 @@
+//Global hunger score
+var score;
 var database = firebase.database();
+
+//Buttons for manual updates
+document.getElementById("registerBtn").onclick = function() {register("sara", "sara")};
+document.getElementById("updateScoreBtn").onclick = function() {updateScore(score, "sara")};
+
+//Updates user to firebase
+function register(userId, name) {
+firebase.database().ref('users/' + userId).set({
+    username: name
+  });
+}
+
+//Updates score to firebase
+function updateScore(score, userId) {
+firebase.database().ref('users/' + userId).set({
+    playerScore: score
+  });
+}
 
 //this game will have only 1 state
 var GameState = {
@@ -13,9 +33,7 @@ var GameState = {
     this.load.spritesheet('pet', 'assets/images/pet.png', 97, 83, 5, 1, 1); 
   },
   //executed after everything is loaded
-  create: function() {
-      
-    writeUserData(1, "John"); 
+  create: function() { 
     //scaling options
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     
@@ -195,6 +213,7 @@ var GameState = {
 
   //game loop, executed many times per second
   update: function() {
+    score = this.pet.customParams.health;
     if(this.pet.customParams.health <= 0 || this.pet.customParams.fun <= 0) {
       this.pet.customParams.health = 0;
       this.pet.customParams.fun = 0;
@@ -208,12 +227,6 @@ var GameState = {
     this.game.state.restart();
   },
 };
-
-function writeUserData(userId, name) {
-  firebase.database().ref('users/' + userId).set({
-    username: name
-  });
-}
 
 //initiate the Phaser framework
 var game = new Phaser.Game(360, 640, Phaser.AUTO);

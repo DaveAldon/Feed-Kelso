@@ -38,17 +38,9 @@
 		  </style>
 	</head>
 
-	<body>   
-	<input id="clickMe" type="button" value="clickme" onclick="writeUserData();" />
-		<script>
-			var database = firebase.database();
-			function writeUserData("john", "john") {
-				firebase.database().ref('users/' + userId).set({
-					username: name
-				});
-			}
-
-		</script>
+	<body>
+		<button type="button" id="registerBtn">Register</button>
+		<button type="button" id="updateScoreBtn">Update Score</button>
 		<script src="js/main.js"></script>
 	</body>
 </html>
