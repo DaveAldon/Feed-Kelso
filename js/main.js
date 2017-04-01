@@ -1,21 +1,44 @@
+//Game state to control listeners
+var GameAwake = false;
+
 //Global hunger score
-var score;
+var global_user;
+var global_score;
+
+//Listener for the score var, calls the database update function whenever its value changes
+Object.defineProperty(window, "score", { 
+  set: function(value) {
+    global_score = value;
+    //We don't want it to update until given the ability
+    if(GameAwake) {
+    updateScore(global_score, global_user);
+    }
+  }
+});
+
 var database = firebase.database();
 
-//Buttons for manual updates
-document.getElementById("registerBtn").onclick = function() {register("sara", "sara")};
-document.getElementById("updateScoreBtn").onclick = function() {updateScore(score, "sara")};
+//Button events for manual updates
+document.getElementById("registerBtn").onclick = function() {register(document.getElementById("usernameInput").value)};
+document.getElementById("updateScoreBtn").onclick = function() {updateScore(score, global_user)};
 
-//Updates user to firebase
-function register(userId, name) {
-firebase.database().ref('users/' + userId).set({
-    username: name
+//Registers user to firebase
+function register(userId) {
+  //After the user registers, the game is awakened and the listeners can begin updating Firebase
+  GameAwake = true;
+  global_user = userId;
+  firebase.database().ref('users/' + userId).set({
+      username: userId,
+      playerScore: score
   });
 }
 
 //Updates score to firebase
 function updateScore(score, userId) {
-firebase.database().ref('users/' + userId).set({
+firebase.database().ref('users/' + userId).update({
+    //While it may seem inneficient to update the username repeatedly, it won't be as the value hasn't changed. It is necessary in the
+    //update function however, in order to stay set in Firebase
+    username: userId,
     playerScore: score
   });
 }
