@@ -8,7 +8,7 @@ var GameState = {
     this.game.load.image('rotate', 'assets/images/rotate.png');    
     this.game.load.image('toy', 'assets/images/rubber_duck.png');    
     this.game.load.image('arrow', 'assets/images/arrow.png');   
-    this.load.spritesheet('pet', 'assets/images/pet.png', 97, 83, 5, 1, 1); 
+    this.load.spritesheet('pet', 'assets/images/kelso.png', 97, 83, 5, 1, 1); 
   },
   //executed after everything is loaded
   create: function() { 
