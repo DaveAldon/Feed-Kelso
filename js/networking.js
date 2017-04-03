@@ -28,15 +28,31 @@ Object.defineProperty(window, "score", {
   }
 });
 
-//Registers user to firebase
+//Registers user to firebase if the username is valid
 function register(userId) {
-  //After the user registers, the game is awakened and the listeners can begin updating Firebase
-  GameAwake = true;
-  global_user = userId;
-  firebase.database().ref('users/' + userId).set({
-      username: userId,
-      playerScore: score
-  });
+  //Check for special characters before asking database for duplicates
+  var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
+  if(userId.indexOf(iChars) == -1) {
+    console.log(document.getElementById("usernameInput").value);
+    console.log(userId.indexOf(iChars));
+    alert ("Your username has special characters. \nThese are not allowed.\n");
+    document.getElementById("usernameInput").value = "";
+  }
+  else {
+    //Duplicate username validation
+    ref.once('value', function(snapshot) {
+      if (!snapshot.hasChild(userId)) {
+        //After the user registers, the game is awakened and the listeners can begin updating Firebase
+        GameAwake = true;
+        global_user = userId;
+        firebase.database().ref('users/' + userId).set({
+            username: userId,
+            playerScore: score
+        });
+      }
+      else alert('That username is already in use.');
+    });
+  }
 }
 
 //Updates score to firebase
