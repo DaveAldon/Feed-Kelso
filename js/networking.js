@@ -8,6 +8,15 @@ var global_score;
 //Easily accessible reference to user objects
 var ref = firebase.database().ref("users/");
 
+//Button events for manual updates
+document.getElementById("registerBtn").onclick = function() {register(document.getElementById("usernameInput").value)};
+document.getElementById("updateScoreBtn").onclick = function() {updateScore(score, global_user)};
+
+//Listener for any database changes. Upon a change, we call the high score update function for incredible efficiency
+ref.on("value", function(snapshot) {
+  updateHighScore();
+});
+
 //Listener for the score var, calls the database update function whenever its value changes
 Object.defineProperty(window, "score", { 
   set: function(value) {
@@ -18,10 +27,6 @@ Object.defineProperty(window, "score", {
     }
   }
 });
-
-//Button events for manual updates
-document.getElementById("registerBtn").onclick = function() {register(document.getElementById("usernameInput").value)};
-document.getElementById("updateScoreBtn").onclick = function() {updateScore(score, global_user)};
 
 //Registers user to firebase
 function register(userId) {
@@ -43,11 +48,6 @@ firebase.database().ref('users/' + userId).update({
     playerScore: score
   });
 }
-
-//Listener for any database changes. Upon a change, we call the high score update function for incredible efficiency
-ref.on("value", function(snapshot) {
-  updateHighScore();
-});
 
 //Calling this function repeatedly just wipes the inner HTML and replaces it with the specified napshot value. Firebase sorts it for us automatically for efficiency
 function updateHighScore() {
