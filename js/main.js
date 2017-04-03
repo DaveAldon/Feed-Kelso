@@ -4,6 +4,13 @@ var GameAwake = false;
 //Global hunger score
 var global_user;
 var global_score;
+//var scoreList = new List();
+
+var s1 = document.getElementById("s1");
+var s2 = document.getElementById("s2");
+var s3 = document.getElementById("s3");
+var s4 = document.getElementById("s4");
+var s5 = document.getElementById("s5");
 
 //Listener for the score var, calls the database update function whenever its value changes
 Object.defineProperty(window, "score", { 
@@ -16,7 +23,7 @@ Object.defineProperty(window, "score", {
   }
 });
 
-var database = firebase.database();
+//var database = firebase.database();
 
 //Button events for manual updates
 document.getElementById("registerBtn").onclick = function() {register(document.getElementById("usernameInput").value)};
@@ -41,6 +48,21 @@ firebase.database().ref('users/' + userId).update({
     username: userId,
     playerScore: score
   });
+}
+
+function updateHighScore() {
+  var ref = firebase.database().ref("users/");
+  var i = 5;
+  ref.orderByChild("playerScore").limitToLast(5).on("child_added", function(snapshot) {
+    console.log(snapshot.val());
+    var score = snapshot.val().playerScore + " " + snapshot.val().username;
+    console.log(snapshot.val().playerScore);
+    var entry = document.getElementById("s" + i);
+    entry.innerHTML = score;
+    i--;
+    console.log(i);
+  });
+  //scoreList.Add(snapshot.val().playerScore);
 }
 
 //this game will have only 1 state
@@ -236,6 +258,7 @@ var GameState = {
 
   //game loop, executed many times per second
   update: function() {
+    if(GameAwake) updateHighScore();
     score = this.pet.customParams.health;
     if(this.pet.customParams.health <= 0 || this.pet.customParams.fun <= 0) {
       this.pet.customParams.health = 0;
