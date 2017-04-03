@@ -1,70 +1,3 @@
-//Game state to control listeners
-var GameAwake = false;
-
-//Global hunger score
-var global_user;
-var global_score;
-//var scoreList = new List();
-
-var s1 = document.getElementById("s1");
-var s2 = document.getElementById("s2");
-var s3 = document.getElementById("s3");
-var s4 = document.getElementById("s4");
-var s5 = document.getElementById("s5");
-
-//Listener for the score var, calls the database update function whenever its value changes
-Object.defineProperty(window, "score", { 
-  set: function(value) {
-    global_score = value;
-    //We don't want it to update until given the ability
-    if(GameAwake) {
-    updateScore(global_score, global_user);
-    }
-  }
-});
-
-//var database = firebase.database();
-
-//Button events for manual updates
-document.getElementById("registerBtn").onclick = function() {register(document.getElementById("usernameInput").value)};
-document.getElementById("updateScoreBtn").onclick = function() {updateScore(score, global_user)};
-
-//Registers user to firebase
-function register(userId) {
-  //After the user registers, the game is awakened and the listeners can begin updating Firebase
-  GameAwake = true;
-  global_user = userId;
-  firebase.database().ref('users/' + userId).set({
-      username: userId,
-      playerScore: score
-  });
-}
-
-//Updates score to firebase
-function updateScore(score, userId) {
-firebase.database().ref('users/' + userId).update({
-    //While it may seem inneficient to update the username repeatedly, it won't be as the value hasn't changed. It is necessary in the
-    //update function however, in order to stay set in Firebase
-    username: userId,
-    playerScore: score
-  });
-}
-
-function updateHighScore() {
-  var ref = firebase.database().ref("users/");
-  var i = 5;
-  ref.orderByChild("playerScore").limitToLast(5).on("child_added", function(snapshot) {
-    console.log(snapshot.val());
-    var score = snapshot.val().playerScore + " " + snapshot.val().username;
-    console.log(snapshot.val().playerScore);
-    var entry = document.getElementById("s" + i);
-    entry.innerHTML = score;
-    i--;
-    console.log(i);
-  });
-  //scoreList.Add(snapshot.val().playerScore);
-}
-
 //this game will have only 1 state
 var GameState = {
   //load the game assets before the game starts
@@ -97,10 +30,10 @@ var GameState = {
     this.pet.animations.add('funnyfaces', [0, 1, 2, 3, 2, 1, 0], 7, false);
     this.pet.anchor.setTo(0.5);
 
-    //custom properties of the pet
+    //custom properties of Kelso
     this.pet.customParams = {health: 100, fun: 100};
 
-    //draggable pet
+    //draggable Kelso
     this.pet.inputEnabled = true;
     this.pet.input.enableDrag();
     
@@ -149,7 +82,7 @@ var GameState = {
     this.uiBlocked = false;
   },
 
-  //rotate the pet
+  //rotate Kelso
   rotatePet: function(sprite, event) {
 
     if(!this.uiBlocked) {
@@ -204,7 +137,7 @@ var GameState = {
       newItem.anchor.setTo(0.5);
       newItem.customParams = this.selectedItem.customParams;
 
-      //the pet will move to grab the item
+      //Kelso will move to grab the item
       this.uiBlocked = true;
       var petMovement = game.add.tween(this.pet);
       petMovement.to({x: x, y: y}, 700);
@@ -214,10 +147,10 @@ var GameState = {
         //destroy item
         newItem.destroy();
 
-        //animate pet
+        //animate Kelso
         this.pet.animations.play('funnyfaces');
 
-        //update pet stats
+        //update Kelso stats
         var stat;
         for(stat in newItem.customParams) {
           //make sure the property belongs to the object and not the prototype
@@ -249,7 +182,7 @@ var GameState = {
     this.funText.text = this.pet.customParams.fun;
   },
   
-  //the pet slowly becomes less health and bored
+  //Kelso slowly becomes less health and bored
   reduceProperties: function() {
     this.pet.customParams.health = Math.max(0, this.pet.customParams.health - 20);
     this.pet.customParams.fun = Math.max(0, this.pet.customParams.fun - 30);
@@ -258,7 +191,6 @@ var GameState = {
 
   //game loop, executed many times per second
   update: function() {
-    if(GameAwake) updateHighScore();
     score = this.pet.customParams.health;
     if(this.pet.customParams.health <= 0 || this.pet.customParams.fun <= 0) {
       this.pet.customParams.health = 0;
