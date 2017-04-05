@@ -31,6 +31,7 @@ Object.defineProperty(window, "score", {
 //Registers user to firebase if the username is valid
 function register(userId) {
   //Check for special characters before asking database for duplicates
+  /*
   var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
   if(userId.indexOf(iChars) == -1) {
     console.log(document.getElementById("usernameInput").value);
@@ -38,7 +39,7 @@ function register(userId) {
     alert ("Your username has special characters. \nThese are not allowed.\n");
     document.getElementById("usernameInput").value = "";
   }
-  else {
+  else { */
     //Duplicate username validation
     ref.once('value', function(snapshot) {
       if (!snapshot.hasChild(userId)) {
@@ -52,7 +53,7 @@ function register(userId) {
       }
       else alert('That username is already in use.');
     });
-  }
+  //}
 }
 
 //Updates score to firebase
