@@ -9,34 +9,71 @@
 		<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 		<!--This one is for the live database-->
 		<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase-database.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script>
-		  // Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyCKavR_qg_8Un8qKph16SR5N3PXR5m6Psk",
-		    authDomain: "feed-kelso.firebaseapp.com",
-		    databaseURL: "https://feed-kelso.firebaseio.com",
-		    projectId: "feed-kelso",
-		    storageBucket: "feed-kelso.appspot.com",
-		    messagingSenderId: "879077848125"
-		  };
-		  firebase.initializeApp(config);
+			// Initialize Firebase
+			var config = {
+				apiKey: "AIzaSyCKavR_qg_8Un8qKph16SR5N3PXR5m6Psk",
+				authDomain: "feed-kelso.firebaseapp.com",
+				databaseURL: "https://feed-kelso.firebaseio.com",
+				projectId: "feed-kelso",
+				storageBucket: "feed-kelso.appspot.com",
+				messagingSenderId: "879077848125"
+				};
+			firebase.initializeApp(config);
 		</script>
-        <script src="cordova.js"></script>
-        <script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
+	    <script src="cordova.js"></script>
+	    <script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
 		<script src="js/phaser.js"></script>
 		<style>
-		  body {
-		    padding: 0px;
-		    margin: 0px;
-            background-color: black;
-		  }
-		  </style>
+		  	body {
+		    	padding: 0px;
+		    	margin: 0px;
+	        	background-color: black;
+		  	}
+		  	p {
+		  		color: white;
+		  	}
+		  	.errorMsg {
+		  		background-color: red;
+		 	}
+		 </style>
 	</head>
 
 	<body>
-		<input type="text" name="username" id="usernameInput" value="">
-		<button type="button" id="registerBtn">Register</button>
-		<button type="button" id="updateScoreBtn">Update Score</button>
+		<p>Enter a username and select Register to begin feeding Kelso!
+		</p>
+		<input type='text' id='usernameInput'>
+		<input type="button" class="button-disabled" id="registerBtn" disabled="disabled" value="Register" onclick="">
+		<div class="errorMsg" id="throwEx" text=""></div>
+
+		<!--Validation for alphanumeric characters-->
+		<script>
+			$("#throwEx").hide();
+			$("#usernameInput").keyup(checkForm).focus(checkForm);
+
+			function checkForm() {
+			    var needle = /^([a-zA-Z0-9]+)$/;
+			    var inputVal = $("#usernameInput").val();
+			    
+			    if (inputVal == '') {
+			        $("#registerBtn").addClass("button-disabled").removeClass("button");
+			        $("#registerBtn").attr("disabled", "disabled");
+			        $("#throwEx").hide();
+			    }
+			    else if (!needle.test(inputVal)) {
+			        $("#registerBtn").addClass("button-disabled").removeClass("button");
+			        $("#registerBtn").attr("disabled", "disabled");
+			        $("#throwEx").text("Error: Only Alphanumeric characters are allowed...");
+			        $("#throwEx").show();
+			    } else {
+			        $("#registerBtn").removeClass("button-disabled").addClass("button");
+			        $("#registerBtn").removeAttr("disabled");
+			        $("#throwEx").hide();
+			    }
+			}
+		</script>
+
 		<script src="js/networking.js"></script>
 		<script src="js/main.js"></script>
 		<ol style= "color: white" id="highscore">
