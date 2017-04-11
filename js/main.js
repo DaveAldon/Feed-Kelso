@@ -2,13 +2,13 @@
 var GameState = {
   //load the game assets before the game starts
   preload: function() {
-    this.game.load.image('backyard', 'assets/images/room.png');    
-    this.game.load.image('apple', 'assets/images/pancakes.png');    
-    this.game.load.image('candy', 'assets/images/beer.png');    
+    this.game.load.image('background', 'assets/images/room.png');    
+    this.game.load.image('pancakes', 'assets/images/pancakes.png');    
+    this.game.load.image('beer', 'assets/images/beer.png');    
     this.game.load.image('rotate', 'assets/images/rotate.png');    
-    this.game.load.image('toy', 'assets/images/ps4.png');    
+    this.game.load.image('ps4', 'assets/images/ps4.png');    
     this.game.load.image('arrow', 'assets/images/arrow.png');   
-    this.load.spritesheet('pet', 'assets/images/kelso.png', 97, 83, 5, 1, 1); 
+    this.load.spritesheet('kelso', 'assets/images/kelso.png', 97, 83, 5, 1, 1); 
   },
   //executed after everything is loaded
   create: function() { 
@@ -22,46 +22,46 @@ var GameState = {
     //screen size will be set automatically
     this.scale.setScreenSize(true);
       
-    this.background = this.game.add.sprite(0,0, 'backyard');
+    this.background = this.game.add.sprite(0,0, 'background');
     this.background.inputEnabled = true;
     this.background.events.onInputDown.add(this.placeItem, this);
 
-    this.pet = this.game.add.sprite(100, 400, 'pet',0);
-    this.pet.animations.add('funnyfaces', [0, 1, 2, 3, 2, 1, 0], 7, false);
-    this.pet.anchor.setTo(0.5);
+    this.kelso = this.game.add.sprite(100, 400, 'kelso',0);
+    this.kelso.animations.add('funnyfaces', [0, 1, 2, 3, 2, 1, 0], 7, false);
+    this.kelso.anchor.setTo(0.5);
 
     //custom properties of Kelso
-    this.pet.customParams = {health: 100, fun: 100};
+    this.kelso.customParams = {health: 100, fun: 100};
 
     //draggable Kelso
-    this.pet.inputEnabled = true;
-    this.pet.input.enableDrag();
+    this.kelso.inputEnabled = true;
+    this.kelso.input.enableDrag();
     
     //buttons
-    this.apple = this.game.add.sprite(72, 570, 'apple');
-    this.apple.anchor.setTo(0.5);
-    this.apple.customParams = {health: 20};
-    this.apple.inputEnabled = true;
-    this.apple.events.onInputDown.add(this.pickItem, this);
+    this.pancakes = this.game.add.sprite(72, 570, 'pancakes');
+    this.pancakes.anchor.setTo(0.5);
+    this.pancakes.customParams = {health: 20};
+    this.pancakes.inputEnabled = true;
+    this.pancakes.events.onInputDown.add(this.pickItem, this);
 
-    this.candy = this.game.add.sprite(144, 570, 'candy');
-    this.candy.anchor.setTo(0.5);
-    this.candy.customParams = {health: -10, fun: 10};
-    this.candy.inputEnabled = true;
-    this.candy.events.onInputDown.add(this.pickItem, this);
+    this.beer = this.game.add.sprite(144, 570, 'beer');
+    this.beer.anchor.setTo(0.5);
+    this.beer.customParams = {health: -10, fun: 10};
+    this.beer.inputEnabled = true;
+    this.beer.events.onInputDown.add(this.pickItem, this);
 
-    this.toy = this.game.add.sprite(216, 570, 'toy');
-    this.toy.anchor.setTo(0.5);
-    this.toy.customParams = {fun: 30};
-    this.toy.inputEnabled = true;
-    this.toy.events.onInputDown.add(this.pickItem, this);
+    this.ps4 = this.game.add.sprite(216, 570, 'ps4');
+    this.ps4.anchor.setTo(0.5);
+    this.ps4.customParams = {fun: 30};
+    this.ps4.inputEnabled = true;
+    this.ps4.events.onInputDown.add(this.pickItem, this);
 
     this.rotate = this.game.add.sprite(288, 570, 'rotate');
     this.rotate.anchor.setTo(0.5);
     this.rotate.inputEnabled = true;
     this.rotate.events.onInputDown.add(this.rotatePet, this);
 
-    this.buttons = [this.apple, this.candy, this.toy, this.rotate];
+    this.buttons = [this.pancakes, this.beer, this.toy, this.rotate];
 
     //nothing selected
     this.selectedItem = null;
@@ -97,12 +97,12 @@ var GameState = {
         navigator.vibrate(1000);
       }
       
-      var petRotation = game.add.tween(this.pet);
+      var petRotation = game.add.tween(this.kelso);
       petRotation.to({ angle: '+720' }, 1000);
       petRotation.onComplete.add(function(){
         this.uiBlocked = false;
         sprite.alpha = 1;
-        this.pet.customParams.fun += 10;
+        this.kelso.customParams.fun += 10;
 
         //show updated stats
         this.refreshStats();
@@ -139,7 +139,7 @@ var GameState = {
 
       //Kelso will move to grab the item
       this.uiBlocked = true;
-      var petMovement = game.add.tween(this.pet);
+      var petMovement = game.add.tween(this.kelso);
       petMovement.to({x: x, y: y}, 700);
       petMovement.onComplete.add(function(){
         this.uiBlocked = false;
@@ -148,14 +148,14 @@ var GameState = {
         newItem.destroy();
 
         //animate Kelso
-        this.pet.animations.play('funnyfaces');
+        this.kelso.animations.play('funnyfaces');
 
         //update Kelso stats
         var stat;
         for(stat in newItem.customParams) {
           //make sure the property belongs to the object and not the prototype
           if(newItem.customParams.hasOwnProperty(stat)) {
-            this.pet.customParams[stat] += newItem.customParams[stat];
+            this.kelso.customParams[stat] += newItem.customParams[stat];
           }
         }
         
@@ -178,24 +178,24 @@ var GameState = {
   },
   //show updated stats values
   refreshStats: function() {
-    this.healthText.text = this.pet.customParams.health;
-    this.funText.text = this.pet.customParams.fun;
+    this.healthText.text = this.kelso.customParams.health;
+    this.funText.text = this.kelso.customParams.fun;
   },
   
   //Kelso slowly becomes less health and bored
   reduceProperties: function() {
-    this.pet.customParams.health = Math.max(0, this.pet.customParams.health - 20);
-    this.pet.customParams.fun = Math.max(0, this.pet.customParams.fun - 30);
+    this.kelso.customParams.health = Math.max(0, this.kelso.customParams.health - 20);
+    this.kelso.customParams.fun = Math.max(0, this.kelso.customParams.fun - 30);
     this.refreshStats();
   },
 
   //game loop, executed many times per second
   update: function() {
-    score = this.pet.customParams.health;
-    if(this.pet.customParams.health <= 0 || this.pet.customParams.fun <= 0) {
-      this.pet.customParams.health = 0;
-      this.pet.customParams.fun = 0;
-      this.pet.frame = 4;
+    score = this.kelso.customParams.health;
+    if(this.kelso.customParams.health <= 0 || this.kelso.customParams.fun <= 0) {
+      this.kelso.customParams.health = 0;
+      this.kelso.customParams.fun = 0;
+      this.kelso.frame = 4;
       this.uiBlocked = true;
 
       this.game.time.events.add(2000, this.gameOver, this);
