@@ -61,7 +61,17 @@ function updateHighScore() {
     var score = snapshot.val().playerScore + " " + snapshot.val().username;
     console.log(snapshot.val().playerScore);
     var entry = document.getElementById("s" + i);
+
+
+	//Checks for score to be equal
+	if(global_user == snapshot.val().username) {
+		entry.style.color = "GREEN";
+	}else{
+		entry.style.color = "WHITE";
+	}
+
     entry.innerHTML = score;
+
     i--;
     //Activate below for troubleshooting
     //console.log(snapshot.val());

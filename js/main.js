@@ -61,7 +61,7 @@ var GameState = {
     this.rotate.inputEnabled = true;
     this.rotate.events.onInputDown.add(this.rotatePet, this);
 
-    this.buttons = [this.pancakes, this.beer, this.toy, this.rotate];
+    this.buttons = [this.pancakes, this.beer, this.ps4, this.rotate];
 
     //nothing selected
     this.selectedItem = null;
