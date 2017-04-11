@@ -22,8 +22,8 @@
 				};
 			firebase.initializeApp(config);
 		</script>
-	    <script src="cordova.js"></script>
-	    <script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
+	    	<script src="cordova.js"></script>
+	   	<script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
 		<script src="js/phaser.js"></script>
 		<style>
 		  	body {
@@ -34,6 +34,56 @@
 		  	p {
 		  		color: white;
 		  	}
+			.left {
+				margin: 0;
+				width:30%;
+				min-width: 250px;
+				float: left;
+			}
+			.right{
+				width = 30%;
+				margin: 0 auto;
+				min-width: 250px;
+				float: right;
+				text-align: center;
+			}
+			.center{
+				width:100%;
+				float: center;
+			}
+			register{
+				margin: 0 auto;
+				border: 1px solid #dddddd;
+			}
+			#registerBtn{
+				width: 30%;
+			}
+			#usernameInput{
+				width: 55%;
+				margin: 0 auto;
+			}
+			table {
+    				width: 100%;
+				}
+
+			td, th {
+    				border: 1px solid #dddddd;
+    				text-align: center;
+    				padding: 2px;
+				}
+			h3 {
+				
+				text-align: center;
+				color: #dddddd;
+			}
+			tr:nth-child(even) {
+    				background-color: #dddddd;
+				color: black;
+				}
+			tr:nth-child(odd) {
+    				background-color: #000000;
+				color: white;
+				}
 		  	.errorMsg {
 		  		background-color: red;
 		 	}
@@ -41,8 +91,14 @@
 	</head>
 
 	<body>
-		<p>Enter a username and select Register to begin feeding Kelso!
-		</p>
+
+		<div class="left">
+		
+		<h3>Enter a username and select Register to begin feeding Kelso!
+		</h3>
+		
+		<div class="register">
+
 		<input type='text' id='usernameInput'>
 		<input type="button" class="button-disabled" id="registerBtn" disabled="disabled" value="Register" onclick="">
 		<div class="errorMsg" id="throwEx" text=""></div>
@@ -73,15 +129,50 @@
 			    }
 			}
 		</script>
+		
+		</div>
+
+		</div>
+		
+		<div class ="center">
 
 		<script src="js/networking.js"></script>
 		<script src="js/main.js"></script>
-		<ol style= "color: white" id="highscore">
-			<li id="s1"></li>
-  			<li id="s2"></li>
-  			<li id="s3"></li>
-  			<li id="s4"></li>
-  			<li id="s5"></li>
-		</ol>
+
+		</div>
+
+		<div class ="right">
+
+		<div id ="leaderboard">
+
+		<table>
+			<tr>
+			<th><h2>Top Scores</h2></th>
+			</tr>
+
+			<tr>
+			<td><div id="s1"></div></td>
+			</tr>
+
+			<tr>
+			<td><div id="s2"></div></td>
+			</tr>
+
+			<tr>		
+			<td><div id="s3"></div></td>
+			</tr>
+
+			<tr>
+			<td><div id="s4"></div></td>
+			</tr>
+
+			<tr>
+			<td><div id="s5"></div></td>
+			</tr>	
+		</table>
+
+		</div>
+		
+		</div>
 	</body>
 </html>
