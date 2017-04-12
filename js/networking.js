@@ -56,22 +56,19 @@ firebase.database().ref('users/' + userId).update({
 //Calling this function repeatedly just wipes the inner HTML and replaces it with the specified napshot value. Firebase sorts it for us automatically for efficiency
 function updateHighScore() {
   //Incrementer for determining which element to place the data. We have a top 5 leaderboard, so it begins at 5
-  var i = 5;
-  ref.orderByChild("playerScore").limitToLast(5).on("child_added", function(snapshot) {
+  var i = 10;
+  ref.orderByChild("playerScore").limitToLast(10).on("child_added", function(snapshot) {
     var score = snapshot.val().playerScore + " " + snapshot.val().username;
-    console.log(snapshot.val().playerScore);
     var entry = document.getElementById("s" + i);
 
-
-	//Checks for score to be equal
+	//Sets color of leaderboard usernames
 	if(global_user == snapshot.val().username) {
 		entry.style.color = "GREEN";
-	}else{
+	} else {
 		entry.style.color = "WHITE";
-	}
+	  }
 
     entry.innerHTML = score;
-
     i--;
     //Activate below for troubleshooting
     //console.log(snapshot.val());
