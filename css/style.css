@@ -1,0 +1,74 @@
+body {
+	padding: 0px;
+	background: #348A96;
+	width: inherit;
+  	}
+ p {
+	color: white;
+	}
+
+.left {
+	margin: 0 auto;
+	width:inherit;
+	min-width: 250px;
+	float: left;
+	height: inherit;
+	background: transparent;
+	position: relative;
+	}
+.right{
+	width: inherit;
+	margin: 0 auto;
+	min-width: 250px;
+	height: inherit;
+	float: right;
+	text-align: center;
+	position: relative;
+	}
+.leaderboard{
+	width: 100%;
+}
+.registerform{
+	width: inherit;
+	}
+.register{
+	margin: 0 auto;
+	padding-right:100px;
+	width: inherit;
+	}
+.button-disabled{
+	width: 50%;
+	margin: 0 auto;
+	padding-bottom:20px;
+	}
+.usernameInput{
+	width: 80%;
+	margin: 0 auto;
+	}
+table {
+    	width:100%;
+	}
+footer {
+	width: inherit;
+	margin: 0 auto;
+}
+td, th {
+    	border: 1px solid #dddddd;
+    	text-align: center;
+    	padding: 2px;
+	}
+h3 {			
+	text-align: center;
+	color: #dddddd;
+	}
+tr:nth-child(even) {
+    	background-color: #dddddd;
+	color: black;
+	}
+tr:nth-child(odd) {
+    	background-color: #2CBBBB;
+	color: white;
+	}
+.errorMsg {
+	background-color: red;
+	}

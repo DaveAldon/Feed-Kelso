@@ -22,103 +22,37 @@
 				};
 			firebase.initializeApp(config);
 		</script>
-	    	<script src="cordova.js"></script>
+	    <script src="cordova.js"></script>
 	   	<script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
 		<script src="js/phaser.js"></script>
-		<style>
-		  	body {
-		    	padding: 0px;
-		    	margin: 0px;
-	        	background-color: black;
-		  	}
-		  	p {
-		  		color: white;
-		  	}
-			.left {
-				margin: 0;
-				width:30%;
-				min-width: 250px;
-				float: left;
-			}
-			.right{
-				width = 30%;
-				margin: 0 auto;
-				min-width: 250px;
-				float: right;
-				text-align: center;
-			}
-			.center{
-				width:100%;
-				float: center;
-			}
-			.register{
-				margin: 0 auto;
-				border: 1px solid #dddddd;
-				padding-left:5%;
-				padding-right:5%;
-				padding-bottom:20px;
+		
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+		<link rel="stylesheet" href="css/styleform.css" type="text/css">
+		<link rel="stylesheet" href="css/styleleaderboard.css" type="text/css">
 
-			}
-			#registerBtn{
-				width: 30%;
-				float: right;
-			}
-			#usernameInput{
-				width: 55%;
-				margin: 0 auto;
-			}
-			table {
-    				width: 100%;
-				}
-
-			td, th {
-    				border: 1px solid #dddddd;
-    				text-align: center;
-    				padding: 2px;
-				}
-			h3 {
-				
-				text-align: center;
-				color: #dddddd;
-			}
-			tr:nth-child(even) {
-    				background-color: #dddddd;
-				color: black;
-				}
-			tr:nth-child(odd) {
-    				background-color: #000000;
-				color: white;
-				}
-		  	.errorMsg {
-		  		background-color: red;
-		 	}
-			button {
-				border: none;
-				color: black;
-				background-color: #e7e7e7;
-				padding: 15px 32px;
-				text-align: center;
-				display: inline-block;
-				font-size: 12px;
-			}
-		 </style>
 	</head>
 
 	<body>
+		<div class="container">
+
 
 		<div class="left">
 
 		<div class="register">
 		
-		<h3>Enter a username and select Register to begin feeding Kelso!
-		</h3>
+		<div class="registerform">
+		
+		<div class="form">
+			<h2>Register to begin feeding Kelso</h2>
+			<form>
+			<input type="text" name="field1" id= 'usernameInput' placeholder="User Name" />
+			<br>
+			<div align="center"><input type="button" class="button-disabled" id="registerBtn" disabled="disabled" value="Register" onclick="" /></div>
+			<div class="errorMsg" id="throwEx" text=""></div>
 
-		<input type='text' id='usernameInput'>
-		<input type="button" class="button-disabled" id="registerBtn" disabled="disabled" value="Register" onclick="">
-		<div class="errorMsg" id="throwEx" text=""></div>
-
-		<!--Validation for alphanumeric characters-->
-		<script>
+			<!--Validation for alphanumeric characters-->
+			<script>
 			$("#throwEx").hide();
 			$("#usernameInput").keyup(checkForm).focus(checkForm);
 
@@ -142,22 +76,29 @@
 			        $("#throwEx").hide();
 			    }
 			}
-		</script>
+			</script>
+			<script src="js/form.js"></script>
+
+			</form>	
+		</div>
+
+
+		</div>
+		
+		<h3>copyright 2017</h3>
 		
 		</div>
 
 		</div>
-		<div align="right"> <button onclick="gamerestart()" type="button">Restart Game</button>&nbsp;</div>
-		<div class ="center">
-
+		
+		<div class="gamewindow">
 		<script src="js/networking.js"></script>
 		<script src="js/main.js"></script>
-
 		</div>
 
 		<div class ="right">
 
-		<div id ="leaderboard">
+		<div class ="leaderboard">
 
 		<table>
 			<tr>
@@ -182,8 +123,8 @@
 
 			<tr>
 			<td><div id="s5"></div></td>
-			</tr>	
-
+			</tr>
+	
 			<tr>
 			<td><div id="s6"></div></td>
 			</tr>
@@ -203,8 +144,16 @@
 			<tr>
 			<td><div id="s10"></div></td>
 			</tr>
+			
+			<tr>
+			<td>
+				<div align="center"><input type="button" class="restart" id="restartBtn" onClick="gamerestart()" value="Restart"></div>
+			</tr>
 		</table>
 
+		
+		</div>
+		
 		</div>
 		
 		</div>

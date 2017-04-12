@@ -64,7 +64,7 @@ var GameState = {
     this.buttons = [this.pancakes, this.beer, this.ps4, this.rotate];
 
     //nothing selected
-    this.selectedItem = null; 
+    this.selectedItem = null;
 
     //stats
     var style = { font: "20px Arial", fill: "#fff"};
@@ -205,12 +205,14 @@ var GameState = {
     this.game.state.restart();
   },
 };
+
 //Add the function for the restart button
 function gamerestart() {
-	game.state.restart(); 
-	}
+	game.start.restart();
+}
+
 //initiate the Phaser framework
-var game = new Phaser.Game(360, 640, Phaser.AUTO);
+var game = new Phaser.Game(360, 640, Phaser.AUTO, 'gamewindow');
 
 game.state.add('GameState', GameState);
 game.state.start('GameState');
