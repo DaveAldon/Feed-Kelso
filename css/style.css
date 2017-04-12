@@ -1,7 +1,10 @@
-body {
+
+HTML {
+	margin: 0 auto;
 	padding: 0px;
 	background: #348A96;
-	width: inherit;
+	width: 1280px;
+	height: 720px;
   	}
  p {
 	color: white;
@@ -10,7 +13,7 @@ body {
 .left {
 	margin: 0 auto;
 	width:inherit;
-	min-width: 250px;
+	min-width: 30%;
 	float: left;
 	height: inherit;
 	background: transparent;
@@ -19,22 +22,26 @@ body {
 .right{
 	width: inherit;
 	margin: 0 auto;
-	min-width: 250px;
+	min-width: 30%;
 	height: inherit;
 	float: right;
 	text-align: center;
 	position: relative;
 	}
 .leaderboard{
-	width: 100%;
+	width: cover;
+}
+.container{
+	width: inherit;
 }
 .registerform{
-	width: inherit;
+	width: 100%;
 	}
 .register{
 	margin: 0 auto;
-	padding-right:100px;
-	width: inherit;
+	float: left;
+	min-width: 250px;
+	width: 100%;
 	}
 .button-disabled{
 	width: 50%;
@@ -45,6 +52,37 @@ body {
 	width: 80%;
 	margin: 0 auto;
 	}
+.banner{
+	text-align: center;
+	height: 90px;
+	width: 100%;
+	font-size: 50px;
+	padding-right: 20px;
+	background-color: #dddddd;
+	position: relative;
+}
+.bannerdiv{
+	text-align: center;
+	height: 10px;
+	width: 100%;
+	background-color: #4D4D4D;
+	padding-right: 20px;
+	position: relative;
+}
+
+.copyright{
+	float: center;
+	margin-bottom: 30px;
+	margin-top: -48px;
+
+	text-align: center;
+	height: 10px;
+	width: 100%;
+	padding-right: 20px;
+	background-color: #4D4D4D;
+	vertical-align: top;
+}
+
 table {
     	width:100%;
 	}
@@ -60,15 +98,13 @@ td, th {
 h3 {			
 	text-align: center;
 	color: #dddddd;
-	}
-tr:nth-child(even) {
-    	background-color: #dddddd;
-	color: black;
-	}
-tr:nth-child(odd) {
-    	background-color: #2CBBBB;
-	color: white;
-	}
+	
+.container input[type="canvas"]{
+	margin: 0 auto;
+	display: inline-block;
+	padding: 8px 18px;
+	width: 50%;
+}
 .errorMsg {
 	background-color: red;
 	}
