@@ -205,7 +205,10 @@ var GameState = {
     this.game.state.restart();
   },
 };
-
+//Add the function for the restart button
+function gamerestart() {
+	game.state.restart(); 
+	}
 //initiate the Phaser framework
 var game = new Phaser.Game(360, 640, Phaser.AUTO);
 
