@@ -1,6 +1,11 @@
 # Feed-Kelso
 
-Help Kelso get to school on time! Our little application focuses on adding functionality to an existing project in order to do just that. For the existing project that we found, We came up with three target areas of improvement:
+Help Kelso get to school on time! Our little application focuses on adding functionality to an existing project in order to do just that.
+
+# [Play it here!](https://davidaldon.github.io/Feed-Kelso/)
+
+We came up with three target areas of improvement when we found the original project here:
+https://software.intel.com/en-us/html5/hub/blogs/how-to-make-a-mobile-virtual-pet-game-with-html5-and-cordova/
 
 1. Leaderboard
 2. Visual Appeal
@@ -30,6 +35,3 @@ We seperated our team of three into each of the functionalities we wanted to add
 1. Leaderboard - David
 2. Visual Appeal - Kelso
 3. Game Logic Improvement - Alisha
-
-The original source of this project is located here:
-https://software.intel.com/en-us/html5/hub/blogs/how-to-make-a-mobile-virtual-pet-game-with-html5-and-cordova/
