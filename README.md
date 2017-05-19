@@ -2,7 +2,7 @@
 
 Help Kelso get to school on time! Our little application focuses on adding functionality to an existing project in order to do just that.
 
-# [Play it here!](https://davidaldon.github.io/Feed-Kelso/)
+# [Play it here!](https://davealdon.github.io/Feed-Kelso/)
 
 We came up with three target areas of improvement when we found the original project here:
 https://software.intel.com/en-us/html5/hub/blogs/how-to-make-a-mobile-virtual-pet-game-with-html5-and-cordova/
