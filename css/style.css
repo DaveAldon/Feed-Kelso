@@ -1,110 +1,112 @@
+p {
+	color: white;
+}
 
-HTML {
-	margin: 0 auto;
+body {
+	margin: 0px;
 	padding: 0px;
 	background: #348A96;
-	width: 1280px;
-	height: 720px;
-  	}
- p {
-	color: white;
-	}
+	width: 100%;
+}
 
 .left {
-	margin: 0 auto;
-	width:inherit;
-	min-width: 30%;
+	margin: 0;
+	width: 30%;
 	float: left;
 	height: inherit;
 	background: transparent;
 	position: relative;
-	}
-.right{
-	width: inherit;
-	margin: 0 auto;
-	min-width: 30%;
+}
+
+.right {
+	width: 30%;
+	margin: 0;
 	height: inherit;
 	float: right;
 	text-align: center;
 	position: relative;
-	}
-.leaderboard{
+}
+
+.gamewindow {
+	width: 100%;
+}
+
+.leaderboard {
 	width: cover;
 }
-.container{
-	width: inherit;
+
+.container {
+	width: 100%;
 }
-.registerform{
+
+.registerform {
 	width: 100%;
-	}
-.register{
-	margin: 0 auto;
+}
+
+.register {
+	margin: 0;
 	float: left;
-	min-width: 250px;
 	width: 100%;
-	}
-.button-disabled{
+}
+
+.button-disabled {
 	width: 50%;
 	margin: 0 auto;
 	padding-bottom:20px;
-	}
-.usernameInput{
+}
+
+.usernameInput {
 	width: 80%;
 	margin: 0 auto;
-	}
-.banner{
+}
+
+h1 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	margin: 0;
+	height: 100%;
+}
+
+.banner {
 	text-align: center;
-	height: 90px;
 	width: 100%;
-	font-size: 50px;
-	padding-right: 20px;
+	font-size: 30px;
 	background-color: #dddddd;
-	position: relative;
 }
-.bannerdiv{
-	text-align: center;
+
+.bannerdiv {
 	height: 10px;
 	width: 100%;
 	background-color: #4D4D4D;
-	padding-right: 20px;
-	position: relative;
 }
 
-.copyright{
+.copyright {
 	float: center;
-	margin-bottom: 30px;
-	margin-top: -48px;
-
 	text-align: center;
 	height: 10px;
 	width: 100%;
 	padding-right: 20px;
 	background-color: #4D4D4D;
-	vertical-align: top;
 }
 
 table {
-    	width:100%;
-	}
+	width:100%;
+}
+
 footer {
 	width: inherit;
 	margin: 0 auto;
 }
 td, th {
-    	border: 1px solid #dddddd;
-    	text-align: center;
-    	padding: 2px;
-	}
-h3 {			
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 2px;
+}
+
+h3 {
 	text-align: center;
 	color: #dddddd;
-	
-.container input[type="canvas"]{
-	margin: 0 auto;
-	display: inline-block;
-	padding: 8px 18px;
-	width: 50%;
 }
+
 .errorMsg {
 	background-color: red;
-	}
+}

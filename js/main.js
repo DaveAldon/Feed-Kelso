@@ -2,26 +2,26 @@
 var GameState = {
   //load the game assets before the game starts
   preload: function() {
-    this.game.load.image('background', 'assets/images/room.png');    
-    this.game.load.image('pancakes', 'assets/images/pancakes.png');    
-    this.game.load.image('beer', 'assets/images/beer.png');    
-    this.game.load.image('rotate', 'assets/images/rotate.png');    
-    this.game.load.image('ps4', 'assets/images/ps4.png');    
-    this.game.load.image('arrow', 'assets/images/arrow.png');   
-    this.load.spritesheet('kelso', 'assets/images/kelso.png', 97, 83, 5, 1, 1); 
+    this.game.load.image('background', 'assets/images/room.png');
+    this.game.load.image('pancakes', 'assets/images/pancakes.png');
+    this.game.load.image('beer', 'assets/images/beer.png');
+    this.game.load.image('rotate', 'assets/images/rotate.png');
+    this.game.load.image('ps4', 'assets/images/ps4.png');
+    this.game.load.image('arrow', 'assets/images/arrow.png');
+    this.load.spritesheet('kelso', 'assets/images/kelso.png', 97, 83, 5, 1, 1);
   },
   //executed after everything is loaded
-  create: function() { 
+  create: function() {
     //scaling options
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    
+
     //have the game centered horizontally
-    this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true;
+    this.scale.pageAlignHorizontally = false;
+    this.scale.pageAlignVertically = false;
 
     //screen size will be set automatically
-    this.scale.setScreenSize(true);
-      
+    this.scale.setScreenSize(false);
+
     this.background = this.game.add.sprite(0,0, 'background');
     this.background.inputEnabled = true;
     this.background.events.onInputDown.add(this.placeItem, this);
@@ -36,7 +36,7 @@ var GameState = {
     //draggable Kelso
     this.kelso.inputEnabled = true;
     this.kelso.input.enableDrag();
-    
+
     //buttons
     this.pancakes = this.game.add.sprite(72, 570, 'pancakes');
     this.pancakes.anchor.setTo(0.5);
@@ -78,7 +78,7 @@ var GameState = {
     //decrease health and fun every 10 seconds
     this.statsDecreaser = this.game.time.events.loop(Phaser.Timer.SECOND * 5, this.reduceProperties, this);
     this.statsDecreaser.timer.start();
-    
+
     this.uiBlocked = false;
   },
 
@@ -91,12 +91,12 @@ var GameState = {
       //alpha to indicate selection
       this.clearSelection();
       sprite.alpha = 0.4;
-      
+
       //vibrate device if present
       if(navigator.vibrate) {
         navigator.vibrate(1000);
       }
-      
+
       var petRotation = game.add.tween(this.kelso);
       petRotation.to({ angle: '+720' }, 1000);
       petRotation.onComplete.add(function(){
@@ -158,14 +158,14 @@ var GameState = {
             this.kelso.customParams[stat] += newItem.customParams[stat];
           }
         }
-        
+
         //show updated stats
         this.refreshStats();
 
         //clear selection
         this.clearSelection();
       }, this);
-      petMovement.start();      
+      petMovement.start();
     }
   },
   //clear all buttons from selection
@@ -181,7 +181,7 @@ var GameState = {
     this.healthText.text = this.kelso.customParams.health;
     this.funText.text = this.kelso.customParams.fun;
   },
-  
+
   //Kelso slowly becomes less health and bored
   reduceProperties: function() {
     this.kelso.customParams.health = Math.max(0, this.kelso.customParams.health - 20);
@@ -201,7 +201,7 @@ var GameState = {
       this.game.time.events.add(2000, this.gameOver, this);
     }
   },
-  gameOver: function() {    
+  gameOver: function() {
     this.game.state.restart();
   },
 };
@@ -213,6 +213,5 @@ function gamerestart() {
 
 //initiate the Phaser framework
 var game = new Phaser.Game(360, 640, Phaser.AUTO, 'gamewindow');
-
 game.state.add('GameState', GameState);
 game.state.start('GameState');

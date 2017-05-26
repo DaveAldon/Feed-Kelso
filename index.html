@@ -4,7 +4,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 		<title>Feed Kelso</title>
-
 		<!--Components installed for Firebase-->
 		<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 		<!--This one is for the live database-->
@@ -19,164 +18,135 @@
 				projectId: "feed-kelso",
 				storageBucket: "feed-kelso.appspot.com",
 				messagingSenderId: "879077848125"
-				};
+			};
 			firebase.initializeApp(config);
 		</script>
 	    <script src="cordova.js"></script>
 	   	<script src="http://debug-software.intel.com/target/target-script-min.js#h-unTNzGFiNcRsiWeb8YwEcNzVyzTDqbXLgVUBM4vQI"></script>
 		<script src="js/phaser.js"></script>
-		
+
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/style.css" type="text/css">
 		<link rel="stylesheet" href="css/styleform.css" type="text/css">
 		<link rel="stylesheet" href="css/styleleaderboard.css" type="text/css">
-
 	</head>
-
 	<body>
-
-		<div class="bannerdiv"/div>
-	
-		</div>
-
 		<div class="banner">
-		<h1> FEED KELSO </h1>
+			<h1> FEED KELSO </h1>
 		</div>
-
-		<div class="bannerdiv"/div>
-	
-		</div>
-
-		<br>
-
-		<div class="bannerdiv"/div>
-	
-		</div>
-
-		<div class=copyright> <br> Copyright 2017 </div>
-
+		<div class="bannerdiv"></div>
 		<div class="container">
-
-
-
-		<div class="left">
-
-		<div class="register">
-		
-		<div class="registerform">
-		
-		<div class="form">
-			<h2>Register to begin feeding Kelso</h2>
-			<form>
-			<input type="text" name="field1" id= 'usernameInput' placeholder="User Name" />
-			<br>
-			<div align="center"><input type="button" class="button-disabled" id="registerBtn" disabled="disabled" value="Register" onclick="" /></div>
-			<div class="errorMsg" id="throwEx" text=""></div>
-
-			<!--Validation for alphanumeric characters-->
-			<script>
-			$("#throwEx").hide();
-			$("#usernameInput").keyup(checkForm).focus(checkForm);
-
-			function checkForm() {
-			    var needle = /^([a-zA-Z0-9]+)$/;
-			    var inputVal = $("#usernameInput").val();
-			    
-			    if (inputVal == '') {
-			        $("#registerBtn").addClass("button-disabled").removeClass("button");
-			        $("#registerBtn").attr("disabled", "disabled");
-			        $("#throwEx").hide();
-			    }
-			    else if (!needle.test(inputVal)) {
-			        $("#registerBtn").addClass("button-disabled").removeClass("button");
-			        $("#registerBtn").attr("disabled", "disabled");
-			        $("#throwEx").text("Error: Only Alphanumeric characters are allowed...");
-			        $("#throwEx").show();
-			    } else {
-			        $("#registerBtn").removeClass("button-disabled").addClass("button");
-			        $("#registerBtn").removeAttr("disabled");
-			        $("#throwEx").hide();
-			    }
-			}
-			</script>
-			<script src="js/form.js"></script>
-
-			</form>	
+			<div class="left">
+				<div class="register">
+					<div class="registerform">
+							<div class="form">
+								<h2>Register to begin feeding Kelso</h2>
+									<form>
+										<input type="text" name="field1" id= 'usernameInput' placeholder="User Name" />
+											<br>
+											<div align="center"><input type="button" class="button-disabled" id="registerBtn" disabled="disabled" value="Register" onclick="" /></div>
+											<div class="errorMsg" id="throwEx" text=""></div>
+											<!--Validation for alphanumeric characters-->
+											<script>
+												$("#throwEx").hide();
+												$("#usernameInput").keyup(checkForm).focus(checkForm);
+												function checkForm() {
+												    var needle = /^([a-zA-Z0-9]+)$/;
+												    var inputVal = $("#usernameInput").val();
+												    if (inputVal == '') {
+												        $("#registerBtn").addClass("button-disabled").removeClass("button");
+												        $("#registerBtn").attr("disabled", "disabled");
+												        $("#throwEx").hide();
+												    }
+												    else if (!needle.test(inputVal)) {
+												        $("#registerBtn").addClass("button-disabled").removeClass("button");
+												        $("#registerBtn").attr("disabled", "disabled");
+												        $("#throwEx").text("Error: Only Alphanumeric characters are allowed...");
+												        $("#throwEx").show();
+												    } else {
+												        $("#registerBtn").removeClass("button-disabled").addClass("button");
+												        $("#registerBtn").removeAttr("disabled");
+												        $("#throwEx").hide();
+												    }
+												}
+											</script>
+											<script src="js/form.js"></script>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="gamewindow">
+							<script src="js/networking.js"></script>
+							<script src="js/main.js"></script>
+						</div>
+						<div class ="right">
+							<div class ="leaderboard">
+								<table>
+									<tr>
+										<th>
+											<h2>Top Scores</h2>
+										</th>
+									</tr>
+									<tr>
+										<td>
+											<div id="s1"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s2"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s3"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s4"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s5"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s6"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s7"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s8"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s9"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div id="s10"></div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div align="center">
+												<input type="button" class="restart" id="restartBtn" onClick="gamerestart()" value="Restart">
+											</div>
+										</tr>
+									</table>
+								</div>
+					</div>
 		</div>
-
-
-		</div>
-				
-		</div>
-
-		</div>
-		
-		<div class="gamewindow">
-		<script src="js/networking.js"></script>
-		<script src="js/main.js"></script>
-		</div>
-
-		<div class ="right">
-
-		<div class ="leaderboard">
-
-		<table>
-			<tr>
-			<th><h2>Top Scores</h2></th>
-			</tr>
-
-			<tr>
-			<td><div id="s1"></div></td>
-			</tr>
-
-			<tr>
-			<td><div id="s2"></div></td>
-			</tr>
-
-			<tr>		
-			<td><div id="s3"></div></td>
-			</tr>
-
-			<tr>
-			<td><div id="s4"></div></td>
-			</tr>
-
-			<tr>
-			<td><div id="s5"></div></td>
-			</tr>
-	
-			<tr>
-			<td><div id="s6"></div></td>
-			</tr>
-
-			<tr>
-			<td><div id="s7"></div></td>
-			</tr>
-
-			<tr>		
-			<td><div id="s8"></div></td>
-			</tr>
-
-			<tr>
-			<td><div id="s9"></div></td>
-			</tr>
-
-			<tr>
-			<td><div id="s10"></div></td>
-			</tr>
-			
-			<tr>
-			<td>
-				<div align="center"><input type="button" class="restart" id="restartBtn" onClick="gamerestart()" value="Restart"></div>
-			</tr>
-		</table>
-
-		
-		</div>
-		
-		</div>
-
-		</div>
-				
 	</body>
 </html>
