@@ -11,7 +11,7 @@ https://software.intel.com/en-us/html5/hub/blogs/how-to-make-a-mobile-virtual-pe
 2. Visual Appeal
 3. Game Logic Improvement
 
-This project uses HTML and Javascript at its core, and the 2D physics operate using Phaser. Cordova exists on the project for future mobile compatibility, CSS was added for more visual control, and the Firebase api is used heavily for the leaderboard. Below are the three functions in more detail.
+This project uses HTML and Javascript at its core, and the 2D physics operate using Phaser. CSS was added for more visual control, and the Firebase api is used heavily for the leaderboard. Below are the three functions in more detail.
 
 # Leaderboard
 
