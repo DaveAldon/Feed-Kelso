@@ -1,5 +1,7 @@
 # Feed-Kelso
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6440b3fcce544af1bae127fc3493f0d0)](https://www.codacy.com/app/crawford_2/Feed-Kelso?utm_source=github.com&utm_medium=referral&utm_content=DaveAldon/Feed-Kelso&utm_campaign=badger)
+
 Help Kelso get to school on time! Our little application focuses on adding functionality to an existing project in order to do just that.
 
 # [Play it here!](https://davealdon.github.io/Feed-Kelso/)
